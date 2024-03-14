@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [weatherData, setWeatherData] = useState(null);
+  const [location, setLocation] = useState(''); 
+
+  const updateLocation = (e) => {
+    e.preventDefault();
+    const locationInput = document.getElementById('locationInput').value;
+    setLocation(locationInput);
+  }
+
+  useEffect(() => {
+    const fetchWeatherData = async () => {
+      try {
+        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=22c34c4452904aa8959130339241403&q=${location}`);
+        const data = await response.json();
+        setWeatherData(data);
+      } catch (error) {
+        console.error("Error fetching weather data: ", error);
+      }
+    };
+
+    if(location) {
+      fetchWeatherData();
+    }
+  }, [location]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Weather App</h1>
+      <form onSubmit={updateLocation}>
+        <label htmlFor="locationInput">Enter the Location Name: </label>
+        <input type="text" id="locationInput" />
+        <input type="submit" value="Search" />
+      </form>
+      {weatherData && (
+        <div>
+          <img src={weatherData.current.condition.icon} alt="weather icon" />
+          <p>{weatherData.current.temp_c}°C</p>
+        </div>
+      )}
+    </div>
+  );
 }
-
-export default App
