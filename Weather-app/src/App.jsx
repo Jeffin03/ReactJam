@@ -7,7 +7,7 @@ export default function App() {
 
   const updateLocation = (e) => {
     e.preventDefault();
-    const locationInput = document.getElementById('locationInput').value;
+    const locationInput = document.getElementById('locationInput').value.toLowerCase();
     setLocation(locationInput);
   }
 
