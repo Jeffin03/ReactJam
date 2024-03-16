@@ -70,6 +70,7 @@ export default function App() {
               <p>{weatherData.current.temp_f}°F</p>
             </div>
           </div>
+          <hr>
           <h2>Forecast</h2>
           <div className="forecastInfo grid">
             {weatherData.forecast.forecastday.map((day) => (
