@@ -1,6 +1,74 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
+
+.top-section{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  background-image: url(./assets/bg-image.jpg);
+}
+
+.top-section > h1{
+  font-size: 3rem;
+  margin: 2rem 0;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+}
+
+#locationInput{
+  width: 60%;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+.capitalize {
+  text-transform: capitalize;
+  font-size: 50px;
+}
+
+#searchbtn{
+  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+
+#loadingText{
+  font-size: 2rem;
+  margin-top: 2rem;
+  font-family: "Times New Roman", cursive;
+}
+
+.weatherSpecs{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.forecastInfo.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); 
+  gap: 10px; 
+}
+
+#forcast{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
