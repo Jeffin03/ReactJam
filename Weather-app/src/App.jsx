@@ -1,19 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 export default function App() {
   const [weatherData, setWeatherData] = useState();
   const [location, setLocation] = useState();
   const updateLocation = (e) => {
     e.preventDefault();
-    const locationInput = document.getElementById('locationInput').value.toLowerCase();
+    const locationInput = document
+      .getElementById("locationInput")
+      .value.toLowerCase();
     setLocation(locationInput);
-  }
+  };
 
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${location}`);
+        const response = await fetch(
+          `https://api.weatherapi.com/v1/current.json?key=${
+            import.meta.env.VITE_WEATHER_API_KEY
+          }&q=${location}`
+        );
         const data = await response.json();
         setWeatherData(data);
       } catch (error) {
@@ -21,7 +27,7 @@ export default function App() {
       }
     };
 
-    if(location) {
+    if (location) {
       fetchWeatherData();
     }
   }, [location]);
