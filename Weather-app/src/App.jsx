@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 export default function App() {
-  const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState(''); 
-
+  const [weatherData, setWeatherData] = useState();
+  const [location, setLocation] = useState();
   const updateLocation = (e) => {
     e.preventDefault();
     const locationInput = document.getElementById('locationInput').value.toLowerCase();
@@ -14,7 +13,7 @@ export default function App() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=22c34c4452904aa8959130339241403&q=${location}`);
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${location}`);
         const data = await response.json();
         setWeatherData(data);
       } catch (error) {
