@@ -5,6 +5,8 @@ export default function App() {
   const [weatherData, setWeatherData] = useState();
   const [location, setLocation] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const updateLocation = (e) => {
     e.preventDefault();
     const locationInput = document
@@ -23,8 +25,15 @@ export default function App() {
             import.meta.env.VITE_WEATHER_API_KEY
           }&q=${location}&days=7`
         );
+
+        if (!response.ok) { 
+          alert('Please enter a valid location');
+          setIsLoading(false);
+          return;
+        }
         const data = await response.json();
         setWeatherData(data);
+        setErrorMessage(null);
       } catch (error) {
         console.error("Error fetching weather data: ", error);
       }
@@ -52,6 +61,7 @@ export default function App() {
           />
           <input type="submit" value="Search" id="searchbtn" />
         </form>
+        {errorMessage && <p>{errorMessage}</p>}
       </div>
       {isLoading ? (
         <p id="loadingText">Loading...</p>
