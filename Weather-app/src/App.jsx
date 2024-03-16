@@ -28,6 +28,7 @@ export default function App() {
 
         if (!response.ok) {
           alert("Please enter a valid location");
+          setWeatherData(null);
           setIsLoading(false);
           return;
         }
