@@ -26,8 +26,8 @@ export default function App() {
           }&q=${location}&days=7`
         );
 
-        if (!response.ok) { 
-          alert('Please enter a valid location');
+        if (!response.ok) {
+          alert("Please enter a valid location");
           setIsLoading(false);
           return;
         }
@@ -76,7 +76,9 @@ export default function App() {
               />
             </div>
             <div>
-              <h3><u>Temperature</u></h3>
+              <h3>
+                <u>Temperature</u>
+              </h3>
               <p>{weatherData.current.temp_c}°C</p>
               <p>{weatherData.current.temp_f}°F</p>
             </div>
