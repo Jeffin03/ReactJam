@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${location}`);
+        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${import.meta.env.VITE_WEATHER_API_KEY}&q=${location}`);
         const data = await response.json();
         setWeatherData(data);
       } catch (error) {
