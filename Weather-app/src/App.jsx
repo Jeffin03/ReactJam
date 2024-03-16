@@ -66,11 +66,12 @@ export default function App() {
               />
             </div>
             <div>
+              <h3><u>Temperature</u></h3>
               <p>{weatherData.current.temp_c}°C</p>
               <p>{weatherData.current.temp_f}°F</p>
             </div>
           </div>
-          <hr>
+          <hr />
           <h2>Forecast</h2>
           <div className="forecastInfo grid">
             {weatherData.forecast.forecastday.map((day) => (
